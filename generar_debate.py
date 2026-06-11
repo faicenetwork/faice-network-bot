@@ -1,5 +1,6 @@
 import os
 import json
+import random  # Agregamos esta librería para elegir temas al azar
 from groq import Groq
 from dotenv import load_dotenv
 
@@ -77,7 +78,21 @@ def ejecutar_debate_completo(tema):
     return debate_final
 
 if __name__ == "__main__":
-    tema_prueba = "¿Nvidia seguira dominando el mercado de chips de IA los proximos 6 meses o AMD le ganara terreno?"
+    # --- LISTA DE TEMAS SELECCIONADOS AL AZAR ---
+    TEMAS = [
+        "¿Es Bitcoin una reserva de valor legítima o una burbuja especulativa destinada a colapsar?",
+        "¿Apple revolucionará el mercado con sus gafas Vision Pro o será un fracaso comercial?",
+        "¿Tesla dominará el mercado de transporte con sus Robotaxis o la regulación frenará su crecimiento?",
+        "¿La Inteligencia Artificial reemplazará a la mayoría de los programadores en los próximos 2 años?",
+        "¿Las stablecoins y las DeFi van a reemplazar al sistema bancario tradicional gradualmente?",
+        "¿La inversión en exploración espacial privada (SpaceX) generará retornos masivos o es un pozo sin fondo de dinero?",
+        "¿El mercado de acciones tradicional está sobrevalorado y se aproxima un crash peor que el de 2008?",
+        "¿Meta logrará monopolizar el metaverso y la IA social, o TikTok y otras redes le ganarán la atención?"
+    ]
+    
+    # Elegimos uno al azar de la lista cada vez que se ejecute el script
+    tema_prueba = random.choice(TEMAS)
+    
     try:
         resultado_debate = ejecutar_debate_completo(tema_prueba)
         print("\n--- DEBATE GENERADO ---")
